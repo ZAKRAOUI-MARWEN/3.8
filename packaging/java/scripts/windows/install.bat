@@ -1,0 +1,58 @@
+@ECHO OFF
+
+setlocal ENABLEEXTENSIONS
+
+@ECHO Detecting Java version installed.
+:CHECK_JAVA
+for /f tokens^=2-5^ delims^=.-_^" %%j in ('java -fullversion 2^>^&1') do set "jver=%%j%%k"
+@ECHO CurrentVersion %jver%
+
+if %jver% NEQ 170 GOTO JAVA_NOT_INSTALLED
+
+:JAVA_INSTALLED
+
+@ECHO Java 17 found!
+@ECHO Installing sobeam ...
+
+SET loadDemo=false
+
+if "%1" == "--loadDemo" (
+    SET loadDemo=true
+)
+
+SET BASE=%~dp0
+SET LOADER_PATH=%BASE%\conf,%BASE%\extensions
+SET SQL_DATA_FOLDER=%BASE%\data\sql
+SET jarfile=%BASE%\lib\${pkg.name}.jar
+SET installDir=%BASE%\data
+
+PUSHD "%BASE%\conf"
+
+java -cp "%jarfile%" -Dloader.main=org.sobeam.server.SobeamInstallApplication^
+                    -Dinstall.data_dir="%installDir%"^
+                    -Dinstall.load_demo=%loadDemo%^
+                    -Dspring.jpa.hibernate.ddl-auto=none^
+                    -Dinstall.upgrade=false^
+                    -Dlogging.config="%BASE%\install\logback.xml"^
+                    org.springframework.boot.loader.launch.PropertiesLauncher
+
+if errorlevel 1 (
+   @echo SoBeam installation failed!
+   POPD
+   exit /b %errorlevel%
+)
+POPD
+
+"%BASE%"sobeam.exe install
+
+@ECHO SoBeam installed successfully!
+
+GOTO END
+
+:JAVA_NOT_INSTALLED
+@ECHO Java 17 is not installed. Only Java 17 is supported
+@ECHO Please go to https://adoptopenjdk.net/index.html and install Java 17. Then retry installation.
+PAUSE
+GOTO END
+
+:END
