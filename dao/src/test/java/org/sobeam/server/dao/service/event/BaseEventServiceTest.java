@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016-2024 The Sobeam Authors
+ * Copyright © 2024 The Sobeam Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,11 +53,11 @@ public abstract class BaseEventServiceTest extends AbstractServiceTest {
 
     @Before
     public void before() throws ParseException {
-        timeBeforeStartTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2016-11-01T11:30:00Z").getTime();
-        startTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2016-11-01T12:00:00Z").getTime();
-        eventTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2016-11-01T12:30:00Z").getTime();
-        endTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2016-11-01T13:00:00Z").getTime();
-        timeAfterEndTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2016-11-01T13:30:30Z").getTime();
+        timeBeforeStartTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2024-11-01T11:30:00Z").getTime();
+        startTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2024-11-01T12:00:00Z").getTime();
+        eventTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2024-11-01T12:30:00Z").getTime();
+        endTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2024-11-01T13:00:00Z").getTime();
+        timeAfterEndTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse("2024-11-01T13:30:30Z").getTime();
     }
 
     @Test

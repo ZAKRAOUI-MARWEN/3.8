@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016-2024 The Sobeam Authors
+ * Copyright © 2024 The Sobeam Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -146,7 +146,7 @@ public class HashPartitionServiceTest {
         services.forEach(s -> map.put(s.getServiceId(), 0));
 
         Random random = new Random();
-        long ts = new SimpleDateFormat("dd-MM-yyyy").parse("06-12-2016").getTime() - TimeUnit.DAYS.toMillis(tenantCount);
+        long ts = new SimpleDateFormat("dd-MM-yyyy").parse("06-12-2024").getTime() - TimeUnit.DAYS.toMillis(tenantCount);
         for (int tenantIndex = 0; tenantIndex < tenantCount; tenantIndex++) {
             TenantId tenantId = new TenantId(Uuids.startOf(ts));
             ts += TimeUnit.DAYS.toMillis(1) + random.nextInt(1000);
